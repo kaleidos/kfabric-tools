@@ -32,13 +32,13 @@ Posible parameters:
 
 Example:
      
-     from kfabric.context_managers import SSHTunel
-     tunel_kwargs = {
-        'remote_host': 'remote_host_or_ip',
-        'host': 'intern_remote_host_or_ip',
-     }   
-     with SSHTunel(**tunel_kwargs) as tunel:
-        # do any think with open tunel
+    from kfabric.context_managers import SSHTunel
+    tunel_kwargs = {
+       'remote_host': 'remote_host_or_ip',
+       'host': 'intern_remote_host_or_ip',
+    }   
+    with SSHTunel(**tunel_kwargs) as tunel:
+       # do any think with open tunel
 
 
 ### kfabric.api.HgTool ###
@@ -53,7 +53,7 @@ Example:
     tunel_kwargs = {
         'remote_host': 'remote_host_or_ip',
         'host': 'intern_remote_host_or_ip',
-     }   
-     with SSHTunel(**tunel_kwargs) as tunel:
+    }   
+    with SSHTunel(**tunel_kwargs) as tunel:
         HgTool().with_tunel(tunel).push_local_changes(path="/path", username="foouser")
 
