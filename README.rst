@@ -5,8 +5,10 @@ Currently implemented:
 
 Class path                                     | Description
 ---------------------------------------------- | -----------
-``kfabric.context_managers.SSHTunel``          | Create ssh tunel.
 ``kfabric.api.HgTool``                         | Mercurial Helpers
+``kfabric.decorators.ssh_tunel``               | Operate in a ssh tunel.
+``kfabric.context_managers.SSHTunel``          | Low level decorator for ssh tuneling.
+
 
 How to install?
 ---------------
@@ -21,7 +23,12 @@ Simple instalation instructions::
 Api Documentation
 -----------------
 
-``kfabric.context_managers.SSHTunel``
+
+SSH Tuneling
+^^^^^^^^^^^^
+
+- ``kfabric.decorators.ssh_tunel``
+- ``kfabric.context_managers.SSHTunel``
 
 Posible parameters:
 
@@ -32,7 +39,20 @@ Posible parameters:
 - «local_host» is a local bind address (default: localhost)
 - «local_port» is a local bind port (defaut: 2222)
 
-Example::
+Usage example of a decorator::
+
+    from kfabric.decorartors import ssh_tunel
+    tunel_kwargs = {
+       'remote_host': 'remote_host_or_ip',
+       'host': 'intern_remote_host_or_ip',
+    }
+
+    @ssh_tunel(**tunel_kwargs)
+    def deploy(**kwargs):
+        run('uname -a')
+
+
+This decorator, internaly uses ``SSHTunel`` context manager, and this is a simple example::
      
     from kfabric.context_managers import SSHTunel
     tunel_kwargs = {
@@ -42,6 +62,9 @@ Example::
     with SSHTunel(**tunel_kwargs) as tunel:
        # do any think with open tunel
 
+
+Mercurial
+^^^^^^^^^
 
 ``kfabric.api.HgTool``
 
