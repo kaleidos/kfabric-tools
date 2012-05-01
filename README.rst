@@ -3,12 +3,15 @@ Kaleidos Fabric Plugins (Tools)
 
 Currently implemented:
 
-Class path                                     | Description
----------------------------------------------- | -----------
-``kfabric.api.HgTool``                         | Mercurial Helpers
-``kfabric.decorators.ssh_tunel``               | Operate in a ssh tunel.
-``kfabric.context_managers.SSHTunel``          | Low level decorator for ssh tuneling.
-
++------------------------------------------------+-------------------------------------------+
+| Class path                                     | Description                               |
++================================================+===========================================+
+| ``kfabric.api.HgTool``                         | Mercurial Helpers                         |
++------------------------------------------------+-------------------------------------------+
+| ``kfabric.decorators.ssh_tunel``               | Operate in a ssh tunel.                   |
++------------------------------------------------+-------------------------------------------+
+| ``kfabric.context_managers.SSHTunel``          | Low level decorator for ssh tuneling.     |
++------------------------------------------------+-------------------------------------------+
 
 How to install?
 ---------------
