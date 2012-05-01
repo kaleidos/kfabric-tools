@@ -5,11 +5,13 @@ Currently implemented:
 
 Class path                                     | Description
 ---------------------------------------------- | -----------
-`kfabric.context_managers.SSHTunel`            | Create ssh tunel.
-`kfabric.api.HgTool`                           | Mercurial Helpers
+``kfabric.context_managers.SSHTunel``          | Create ssh tunel.
+``kfabric.api.HgTool``                         | Mercurial Helpers
 
 How to install?
 ---------------
+
+Simple instalation instructions::
 
     git clone git://github.com/kaleidos/kfabric-tools.git
     cd kfabric-tools
@@ -19,7 +21,7 @@ How to install?
 Api Documentation
 -----------------
 
-### kfabric.context_managers.SSHTunel ###
+``kfabric.context_managers.SSHTunel``
 
 Posible parameters:
 
@@ -30,7 +32,7 @@ Posible parameters:
 - «local_host» is a local bind address (default: localhost)
 - «local_port» is a local bind port (defaut: 2222)
 
-Example:
+Example::
      
     from kfabric.context_managers import SSHTunel
     tunel_kwargs = {
@@ -41,13 +43,13 @@ Example:
        # do any think with open tunel
 
 
-### kfabric.api.HgTool ###
+``kfabric.api.HgTool``
 
 Is a simple helper for mercurial. Currently only has one method:
 
- - `HgTool.push_local_changes(path, username)`: Push local mercurial changes to remote mercurial. You can use the configuration of the tunnel.
+- ``HgTool.push_local_changes(path, username)``: Push local mercurial changes to remote mercurial. You can use the configuration of the tunnel.
 
-Example:
+Example::
 
     from kfabric.context_managers import SSHTunel
     tunel_kwargs = {

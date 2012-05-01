@@ -9,10 +9,16 @@ class SSHTunel(object):
     Posible parameters:
      * «host» is a internal remote host
      * «port» is a internal remote port (default: 22)
-     * «remote_host» is a first level remote host 
-     * «remote_port» is a first level remote port (default: 22)
+     * «remote_host» is a first level remote host (first destination)
+     * «remote_port» is a first level remote port (first destination, default: 22)
      * «local_host» is a local bind address (default: localhost)
      * «local_port» is a local bind port (defaut: 2222)
+
+     The final command is:
+        ssh -L local_host:local_port:host:port -N remote_host -p remote_port
+
+     The remote host can contain credentials. Example: user@kaleidos.net
+
      """
 
     def __init__(self, host, remote_host, local_port="2222", 
