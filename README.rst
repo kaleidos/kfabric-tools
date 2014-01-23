@@ -8,9 +8,9 @@ Currently implemented:
 +================================================+===========================================+
 | ``kfabric.api.HgTool``                         | Mercurial Helpers                         |
 +------------------------------------------------+-------------------------------------------+
-| ``kfabric.decorators.ssh_tunel``               | Operate in a ssh tunel.                   |
+| ``kfabric.decorators.ssh_tunnel``              | SSH Tunneling implemented as decorator.   |
 +------------------------------------------------+-------------------------------------------+
-| ``kfabric.context_managers.SSHTunel``          | Low level decorator for ssh tuneling.     |
+| ``kfabric.context_managers.SSHTunnel``         | SSH Tunneling implemented as ctx manager. |
 +------------------------------------------------+-------------------------------------------+
 
 How to install?
@@ -27,11 +27,11 @@ Api Documentation
 -----------------
 
 
-SSH Tuneling
-^^^^^^^^^^^^
+SSH Tunneling
+^^^^^^^^^^^^^
 
-- ``kfabric.decorators.ssh_tunel``
-- ``kfabric.context_managers.SSHTunel``
+- ``kfabric.decorators.ssh_tunnel``
+- ``kfabric.context_managers.SSHTunnel``
 
 Posible parameters:
 
@@ -44,26 +44,26 @@ Posible parameters:
 
 Usage example of a decorator::
 
-    from kfabric.decorartors import ssh_tunel
-    tunel_kwargs = {
+    from kfabric.decorartors import ssh_tunnel
+    tunnel_kwargs = {
        'remote_host': 'remote_host_or_ip',
        'host': 'intern_remote_host_or_ip',
     }
 
-    @ssh_tunel(**tunel_kwargs)
+    @ssh_tunnel(**tunnel_kwargs)
     def deploy(**kwargs):
         run('uname -a')
 
 
-This decorator, internaly uses ``SSHTunel`` context manager, and this is a simple example::
+This decorator, internaly uses ``SSHTunnel`` context manager, and this is a simple example::
      
-    from kfabric.context_managers import SSHTunel
-    tunel_kwargs = {
+    from kfabric.context_managers import SSHTunnel
+    tunnel_kwargs = {
        'remote_host': 'remote_host_or_ip',
        'host': 'intern_remote_host_or_ip',
     }   
-    with SSHTunel(**tunel_kwargs) as tunel:
-       # do any think with open tunel
+    with SSHTunnel(**tunnel_kwargs) as tunnel:
+       # do any think with open tunnel
 
 
 Mercurial
@@ -77,11 +77,11 @@ Is a simple helper for mercurial. Currently only has one method:
 
 Example::
 
-    from kfabric.context_managers import SSHTunel
-    tunel_kwargs = {
+    from kfabric.context_managers import SSHTunnel
+    tunnel_kwargs = {
         'remote_host': 'remote_host_or_ip',
         'host': 'intern_remote_host_or_ip',
     }   
-    with SSHTunel(**tunel_kwargs) as tunel:
-        HgTool().with_tunel(tunel).push_local_changes(path="/path", username="foouser")
+    with SSHTunnel(**tunnel_kwargs) as tunnel:
+        HgTool().with_tunnel(tunnel).push_local_changes(path="/path", username="foouser")
 
