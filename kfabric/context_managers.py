@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
-
-from subprocess import Popen, PIPE
+from __future__ import print_function
+import os
 import time
+import signal
+from subprocess import Popen
 
-class SSHTunel(object):
-    """
-    Context manager for create ssh tunel.
+
+class SSHTunnel(object):
+    """Context manager for creating an ssh tunnel.
+
     Posible parameters:
      * «host» is a internal remote host
      * «port» is a internal remote port (default: 22)
@@ -21,8 +24,8 @@ class SSHTunel(object):
 
      """
 
-    def __init__(self, host, remote_host, local_port="2222", 
-                remote_port="22", local_host="localhost", port="22"):
+    def __init__(self, host, remote_host, local_port="2222", remote_port="22",
+                 local_host="localhost", port="22"):
         self.remote_host = remote_host
         self.remote_port = remote_port
         self.local_host = local_host
@@ -31,9 +34,9 @@ class SSHTunel(object):
         self.port = port
 
     def __enter__(self):
-        print "Starting tunnel..."
-        from subprocess import Popen
-        tunel_command = "ssh -L {0}:{1}:{2}:{3} -N {4} -p {5}".format(
+        print("Starting tunnel...")
+
+        tunnel_command = "ssh -L {0}:{1}:{2}:{3} -N {4} -p {5}".format(
             self.local_host,
             self.local_port,
             self.host,
@@ -42,12 +45,11 @@ class SSHTunel(object):
             self.remote_port,
         )
 
-        self.p = Popen(tunel_command.split())
+        self.p = Popen(tunnel_command.split())
         self.pid = self.p.pid
         time.sleep(2)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        print "Stoping tunel..."
-        import os, signal
+        print("Stoping tunnel...")
         os.kill(self.pid, signal.SIGQUIT)
